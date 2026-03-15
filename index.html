@@ -81,19 +81,35 @@
   }
   .hero-period strong { color: var(--gold); font-weight: 400; }
 
-  /* 入会金ゼロ バナー */
-  .zero-banner {
-    display: flex; align-items: center; gap: 16px;
-    background: rgba(140,50,38,0.15);
-    border: 1px solid rgba(140,50,38,0.4);
-    padding: 18px 20px;
+
+  /* 対象外 警告ボックス */
+  .ineligible-box {
+    background: rgba(140,50,38,0.18);
+    border: 1px solid rgba(140,50,38,0.55);
+    border-left: 3px solid #a83d2e;
+    padding: 14px 16px;
+    border-radius: 2px;
   }
-  .zero-left { text-align: center; }
-  .zero-label { font-family: var(--sans); font-size: 17px; letter-spacing: 0.2em; color: var(--dim); margin-bottom: 4px; }
-  .zero-strike { font-family: var(--sans); font-size: 20px; text-decoration: line-through; color: var(--dimmer); }
-  .zero-val { font-family: var(--sans); font-weight: 700; font-size: 36px; line-height: 1; color: #fff; letter-spacing: -0.02em; }
-  .zero-val span { font-size: 0.45em; color: var(--gold); }
-  .zero-right { font-family: var(--serif); font-style: italic; font-size: clamp(21px, 3.5vw, 24px); color: var(--dim); line-height: 1.7; }
+  .ineligible-title {
+    font-family: var(--sans); font-size: 15px; font-weight: 600;
+    color: #e07060; letter-spacing: 0.05em; line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .ineligible-list {
+    list-style: none; padding: 0; margin: 0 0 10px;
+  }
+  .ineligible-list li {
+    font-family: var(--sans); font-size: 15px; color: var(--white);
+    letter-spacing: 0.06em; padding: 4px 0 4px 14px; position: relative;
+  }
+  .ineligible-list li::before {
+    content: '–'; position: absolute; left: 0; color: #a83d2e;
+  }
+  .ineligible-note {
+    font-family: var(--sans); font-size: 13px; color: var(--dim);
+    letter-spacing: 0.05em; line-height: 1.7;
+    padding-top: 8px; border-top: 1px solid rgba(140,50,38,0.3);
+  }
 
   /* ── SECTION ── */
   .sec { padding: 36px 24px; border-bottom: 1px solid var(--border); }
@@ -120,19 +136,6 @@
     font-family: var(--sans); font-size: 16px; letter-spacing: 0.14em;
     color: var(--gold); border: 1px solid var(--gold-dim);
     padding: 4px 9px; white-space: nowrap; margin-top: 2px;
-  }
-  .plan-note {
-    grid-column: 1 / -1;
-    font-family: var(--sans); font-size: 17px; letter-spacing: 0.1em;
-    color: rgba(201,169,110,0.6); line-height: 1.6;
-    padding-top: 10px; border-top: 1px solid rgba(201,169,110,0.1);
-  }
-
-  /* 変更不可バッジ */
-  .no-badge {
-    font-family: var(--sans); font-size: 16px; letter-spacing: 0.12em;
-    color: var(--dimmer); border: 1px solid rgba(255,255,255,0.08);
-    padding: 3px 8px; white-space: nowrap; margin-top: 2px;
   }
 
   /* ── DEADLINE ── */
@@ -293,16 +296,7 @@
   <p class="hero-period fade">
     キャンペーン期間：<strong>4月〜5月</strong>　／　申請締切：<strong>毎月19日まで</strong>
   </p>
-  <div class="zero-banner fade">
-    <div class="zero-left">
-      <div class="zero-label">入会金</div>
-      <div class="zero-strike">¥13,000</div>
-      <div class="zero-val"><span>¥</span>0</div>
-    </div>
-    <div class="zero-right">
-      通常プランから<br>キャンペーンプランへ<br>入会金なしで変更できます。
-    </div>
-  </div>
+
 </section>
 
 <!-- PLANS -->
@@ -328,16 +322,6 @@
         <div class="plan-detail">通い放題（1日2回）　1年契約　用賀店限定</div>
       </div>
       <div class="plan-tag">変更可</div>
-    </div>
-
-    <div class="plan" style="opacity:0.5">
-      <div>
-        <div class="plan-name">LIGHT PLAN</div>
-        <div class="plan-price" style="font-size:clamp(26px, 4.5vw, 34px);color:var(--dimmer)"><span class="y">¥</span>3,980<span class="mo">/ 月</span></div>
-        <div class="plan-detail">通い放題（1日1回）　2年契約　用賀店限定</div>
-      </div>
-      <div class="no-badge">新規限定</div>
-      <div class="plan-note">⚠ ライトプランは新規会員専用のため、既存会員はご変更いただけません。</div>
     </div>
 
   </div>
@@ -374,12 +358,17 @@
         <span class="tag-no">NG</span> 下位プランへの変更は不可
       </div>
     </div>
-    <div class="rule-row">
+    <div class="rule-row rule-row--alert">
       <div class="rule-key">対象外</div>
       <div class="rule-val">
-        以下の契約中の方はご変更いただけません：<br>
-        <strong>3ヶ月通い放題キャンペーン / 半年契約キャンペーン</strong><br>
-        ※契約終了後にご変更いただけます。
+        <div class="ineligible-box">
+          <div class="ineligible-title">⚠ 現在以下のキャンペーンをご利用中の方は<br>今回の変更対象外となります</div>
+          <ul class="ineligible-list">
+            <li>3ヶ月通い放題キャンペーン</li>
+            <li>半年契約キャンペーン</li>
+          </ul>
+          <div class="ineligible-note">現在のキャンペーン契約終了後にご変更いただけます。</div>
+        </div>
       </div>
     </div>
     <div class="rule-row">
@@ -467,9 +456,7 @@
     <div class="no-rush-deadline">5月から開始ご希望の方は<strong>4月19日（土）まで</strong>にご返信ください。</div>
   </div>
 
-  <p class="reply-note fade">
-    先着20〜30名限定　／　定員になり次第終了
-  </p>
+
 </section>
 
 <!-- FOOTER -->
